@@ -44,7 +44,7 @@ class PlayState extends MusicState
 		Conductor.mapBPMChanges(SONG_JSON);
 		Conductor.changeBPM(SONG_JSON.song.bpm);
 
-		Inst = new FlxSound().loadEmbedded('assets/gameplay/songs/$song/Inst.ogg');
+		Inst = new FlxSound().loadEmbedded('assets/gameplay/songs/$song/Inst.wav');
 		Inst.onComplete = endSong;
 		Inst.pause();
 
@@ -52,7 +52,7 @@ class PlayState extends MusicState
 		{
 			if (SONG_JSON.song.voiceList == null)
 			{
-				var Voice = new FlxSound().loadEmbedded('assets/gameplay/songs/$song/Voices.ogg');
+				var Voice = new FlxSound().loadEmbedded('assets/gameplay/songs/$song/Voices.wav');
 				Voice.pause();
 				VoicesGrp.push(Voice);
 			}
@@ -60,13 +60,13 @@ class PlayState extends MusicState
 			{
 				for (voice in SONG_JSON.song.voiceList)
 				{
-					var Voice = new FlxSound().loadEmbedded('assets/gameplay/songs/$song/Voices-$voice.ogg');
+					var Voice = new FlxSound().loadEmbedded('assets/gameplay/songs/$song/Voices-$voice.wav');
 					Voice.pause();
 					VoicesGrp.push(Voice);
 				}
 			}
 
-			trace('${VoicesGrp.length} voice "channels": $VoicesGrp');
+			trace('${VoicesGrp.length} voice "channels"');
 		}
 
 		Conductor.songPosition = 0;
@@ -105,10 +105,10 @@ class PlayState extends MusicState
 		if (Conductor.songPosition >= 0 && !startedSong)
 		{
 			startedSong = true;
-			Inst.resume();
+			Inst.play(true);
 			for (voice in VoicesGrp)
 			{
-				voice.resume();
+				voice.play(true);
 			}
 		}
 
