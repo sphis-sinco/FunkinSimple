@@ -91,6 +91,29 @@ class PlayState extends MusicState
 			add(noteGrp);
 		 */
 
+		FlxG.signals.focusLost.add(() ->
+		{
+			if (Inst.playing)
+			{
+				Inst.pause();
+				for (voice in VoicesGrp)
+				{
+					voice.pause();
+				}
+			}
+		});
+		FlxG.signals.focusGained.add(() ->
+		{
+			if (Conductor.songPosition >= 0)
+			{
+				Inst.play();
+				for (voice in VoicesGrp)
+				{
+					voice.play();
+				}
+			}
+		});
+
 		super.create();
 	}
 
