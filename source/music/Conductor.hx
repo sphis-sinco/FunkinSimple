@@ -9,6 +9,9 @@ typedef BPMChangeEvent =
 
 class Conductor
 {
+	public static var safeFrames:Int = 5;
+	public static var safeZoneOffset:Float = (safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
+
 	// Thank you ninjamuffin99
 	public static var bpm:Float = 100;
 	public static var crochet:Float = ((60 / bpm) * 1000); // beats in milliseconds
@@ -33,20 +36,20 @@ class Conductor
 		stepCrochet = crochet / 4;
 	}
 
-    public static function mapBPMChanges(song:Song)
-        {
-            bpmChangeMap = [];
+	public static function mapBPMChanges(song:Song)
+	{
+		bpmChangeMap = [];
 
-            // todo for if a song needs a bpm change
-    
-            var curBPM:Float = song.song.bpm;
+		// todo for if a song needs a bpm change
 
-            var event:BPMChangeEvent = {        
-                stepTime: 0,
-                songTime: 0,
-                bpm: curBPM
-            }
-            
-            bpmChangeMap.push(event);
-        }
+		var curBPM:Float = song.song.bpm;
+
+		var event:BPMChangeEvent = {
+			stepTime: 0,
+			songTime: 0,
+			bpm: curBPM
+		}
+
+		bpmChangeMap.push(event);
+	}
 }

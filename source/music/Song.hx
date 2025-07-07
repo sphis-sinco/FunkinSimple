@@ -4,7 +4,7 @@ typedef Song =
 {
 	var song:
 		{
-			var notes:Array<Note>;
+			var notes:Array<Section>;
 			var ?voiceList:Array<String>;
 			var needsVoices:Bool;
 			var song:String;
@@ -15,7 +15,7 @@ typedef Song =
 	var ?generatedBy:String;
 }
 
-typedef Note =
+typedef Section =
 {
 	var sectionNotes:Array<Array<Float>>;
 	var lengthInSteps:Int;
