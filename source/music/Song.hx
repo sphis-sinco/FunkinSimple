@@ -5,7 +5,7 @@ typedef Song =
 	var song:
 		{
 			var notes:Array<Note>;
-			var voiceList:Array<String>;
+			var ?voiceList:Array<String>;
 			var needsVoices:Bool;
 			var song:String;
 			var bpm:Float;
