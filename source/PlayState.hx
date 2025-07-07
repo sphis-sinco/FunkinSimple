@@ -25,7 +25,7 @@ class PlayState extends MusicState
 	public static var strumlineY:Float = 50;
 
 	var Inst:FlxSound;
-	var VoicesGrp:Array<FlxSound>;
+	var VoicesGrp:Array<FlxSound> = [];
 
 	override public function new(song:String = 'test')
 	{
@@ -66,7 +66,7 @@ class PlayState extends MusicState
 				}
 			}
 
-			trace('${VoicesGrp.length} voice "channels"');
+			trace('${VoicesGrp.length} voice "channels": $VoicesGrp');
 		}
 
 		Conductor.songPosition = 0;
@@ -113,7 +113,7 @@ class PlayState extends MusicState
 		}
 
 		// Song Position Info
-		var musicLen:Float = FlxG.sound.music.length / 1000; // divide by 1000 cause its in miliseconds
+		var musicLen:Float = Inst.length / 1000; // divide by 1000 cause its in miliseconds
 		var timeLeft:Float = FlxMath.roundDecimal(musicLen - Conductor.songPosition / 1000, 0);
 
 		// this is for the countdown (when I add it)
